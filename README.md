@@ -12,5 +12,6 @@
 >> Spring JPA  
 >> Lombok  
 >> Mysql-connector  
+>> Spring-boot-devtools  
 >> Spring Security  
 
