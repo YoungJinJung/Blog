@@ -9,21 +9,22 @@
 <%@ include file="../layout/header.jsp" %>
 
 <div class="container">
-    <form action="/action_page.php">
+    <form>
         <div class="form-group">
             <label for="userName">User Name</label>
             <input type="userName" class="form-control" placeholder="Enter userName" id="userName">
         </div>
         <div class="form-group">
-            <label for="email">Email</label>
-            <input type="email" class="form-control" placeholder="Enter email" id="email">
-        </div>
-        <div class="form-group">
             <label for="password">Password</label>
             <input type="Password" class="form-control" placeholder="Enter password" id="password">
         </div>
-
-        <button type="submit" class="btn btn-primary">Sign Up</button>
+        <div class="form-group">
+            <label for="email">Email</label>
+            <input type="email" class="form-control" placeholder="Enter email" id="email">
+        </div>
     </form>
+    <button id="btn-save" class="btn btn-primary">Sign Up</button>
+
 </div>
+<script src="/blog/js/user.js"></script>
 <%@ include file="../layout/footer.jsp" %>
