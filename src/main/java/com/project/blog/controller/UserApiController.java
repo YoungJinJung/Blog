@@ -17,21 +17,11 @@ public class UserApiController {
     @Autowired
     private UserService userService;
 
-    @PostMapping("/api/user")
+    @PostMapping("/auth/joinProc")
     public ResponseDto<Integer> save(@RequestBody User user) {
         System.out.println("UserApiController: Save Called");
         user.setRole(UserRole.USER);
         userService.signUp(user);
-        return new ResponseDto<>(HttpStatus.OK, 1);
-    }
-
-    @PostMapping("/api/user/login")
-    public ResponseDto<Integer> login(@RequestBody User user, HttpSession httpSession) {
-        System.out.println("UserApiController: login Called");
-        User principal = userService.signIn(user);
-        if (principal != null) {
-            httpSession.setAttribute("principal", principal);
-        }
         return new ResponseDto<>(HttpStatus.OK, 1);
     }
 }
