@@ -1,6 +1,7 @@
 package com.project.blog.config.auth;
 
 import com.project.blog.model.User;
+import lombok.Getter;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
 
@@ -8,7 +9,7 @@ import java.util.ArrayList;
 import java.util.Collection;
 
 //스프링 시큐리티가 로그인 요청을 가로채서 완료 시 userDetails 타입의 Object를 고유한 세션 저장소에 저장
-
+@Getter
 public class PrincipalDetail implements UserDetails {
     private User user;
 

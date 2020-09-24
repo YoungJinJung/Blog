@@ -29,7 +29,6 @@ public class Board {
     @Lob
     private String content;//SummerNode Lib <html>Tag
 
-    @ColumnDefault("0")
     private int count;
 
     @ManyToOne(fetch = FetchType.EAGER) // Many = Board, One = User
