@@ -34,7 +34,7 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
     protected void configure(HttpSecurity http) throws Exception {
         http.csrf().disable()//csrf token disable -> form tag를 이용해서 요청이 아닌 ajax call에 토큰이 없어서 block당함.
                 .authorizeRequests()
-                .antMatchers("/", "/auth/**", "/js/**", "/css/**", "/image/**")
+                .antMatchers("/", "/auth/**", "/js/**", "/css/**", "/image/**", "/dummy/**")
                 .permitAll()
                 .anyRequest()
                 .authenticated()
