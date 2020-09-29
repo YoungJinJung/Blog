@@ -1,17 +1,13 @@
 package com.project.blog.service;
 
-import com.project.blog.config.auth.PrincipalDetail;
 import com.project.blog.model.Board;
 import com.project.blog.model.User;
-import com.project.blog.model.UserRole;
 import com.project.blog.repository.BoardRepository;
-import com.project.blog.repository.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
-
-import java.util.List;
 
 
 @Service
@@ -26,7 +22,11 @@ public class BoardService {
         boardRepository.save(board);
     }
 
-    public List<Board> getPotList() {
-        return boardRepository.findAll();
+    public Page<Board> getPotList(Pageable pageable) {
+        return boardRepository.findAll(pageable);
+    }
+
+    public Board getPost(int id) {
+        return boardRepository.findById(id).orElseThrow(()->{return new IllegalArgumentException("Failed to load post : cannot find post id");});
     }
 }
