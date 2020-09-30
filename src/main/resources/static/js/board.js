@@ -6,6 +6,9 @@ let index = {
         $("#btn-delete").on("click", () => {
             this.deleteById();
         });
+        $("#btn-update").on("click", () => {
+            this.update();
+        });
     },
     save: function () {
         let data = {
@@ -27,39 +30,44 @@ let index = {
             alert(JSON.stringify(error))
         });
     },
-    deleteById: function () {
-        var id = $("#id").text();
+    udpate: function () {
+        let id = $("#id").val();
+        let data = {
+            title: $("#title").val(),
+            content: $("#content").val(),
+        };
+
         $.ajax({
-            type: "DELETE",
+            type: "PUT",
             url: "/api/board/" + id,
             contentType: "application/json; charset=utf-8",
         }).done(function (resp) {
-            alert("Success Delete Post");
+            alert("Success Modify Post");
             location.href = "/";
         }).fail(function (error) {
             alert(JSON.stringify(error))
         });
-    }
-    /*login: function () {
+    },
+    save: function () {
         let data = {
-            userName: $("#username").val(),
-            password: $("#password").val(),
+            title: $("#title").val(),
+            content: $("#content").val(),
         }
 
         //ajax default : async call
         //ajax default type json
         $.ajax({
             type: "POST",
-            url: "/api/user/login",
+            url: "/api/board",
             data: JSON.stringify(data),
             contentType: "application/json; charset=utf-8",
         }).done(function (resp) {
-            alert("Success Sign In");
+            alert("Success Save Post");
             location.href = "/";
         }).fail(function (error) {
             alert(JSON.stringify(error))
         });
-    }*/
+    }
 }
 
 index.init();
