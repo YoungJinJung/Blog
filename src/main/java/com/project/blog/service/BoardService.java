@@ -26,7 +26,13 @@ public class BoardService {
         return boardRepository.findAll(pageable);
     }
 
+    @Transactional(readOnly = true)
     public Board getPost(int id) {
         return boardRepository.findById(id).orElseThrow(()->{return new IllegalArgumentException("Failed to load post : cannot find post id");});
+    }
+
+    @Transactional
+    public void deletePost(int id) {
+        boardRepository.deleteById(id);
     }
 }

@@ -2,11 +2,11 @@
 <%@ include file="layout/header.jsp" %>
 
 <div class="container">
-    <c:forEach var="board" items="${boards.content}">
-        <div class="card m-2" style="width:400px">
+    <c:forEach var="boards" items="${boards.content}">
+        <div class="card m-2">
             <div class="card-body">
                 <h4 class="card-title">${boards.title}</h4>
-                <a href="/board/${board.id}" class="btn btn-primary">Detail</a>
+                <a href="/board/${boards.id}" class="btn btn-primary">Detail</a>
             </div>
         </div>
     </c:forEach>
@@ -27,7 +27,6 @@
                 <li class=" page-item"><a class="page-link" href="?page=${boards.number+1}">Next</a></li>
             </c:otherwise>
         </c:choose>
-        <li class="page-item"><a class="page-link" href="?page=${boards.number-1}">Previous</a></li>
     </ul>
 </div>
 <%@ include file="layout/footer.jsp" %>

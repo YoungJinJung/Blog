@@ -10,7 +10,7 @@ let index = {
     save: function () {
         //alert("call user's Save func");
         let data = {
-            userName: $("#username").val(),
+            username: $("#username").val(),
             password: $("#password").val(),
             email: $("#email").val()
         }
