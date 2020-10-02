@@ -16,6 +16,14 @@ public class UserService {
     @Autowired
     private BCryptPasswordEncoder encode;
 
+    @Transactional(readOnly = true)
+    public User findUser(String username) {
+        User user = userRepository.findByUsername(username).orElseGet(() -> {
+            return new User();
+        });
+        return user;
+    }
+
     @Transactional
     public void signUp(User user) {
         String rawPassword = user.getPassword();
@@ -31,10 +39,14 @@ public class UserService {
         User currUser = userRepository.findById(id).orElseThrow(() -> {
             return new IllegalArgumentException(("Failed to load User Info : cannot find User id"));
         });
-        String rawPassword = user.getPassword();
-        String encodePassword = encode.encode(rawPassword);
-        currUser.setPassword(encodePassword);
-        currUser.setEmail(user.getEmail());
+
+        //Validate
+        if (currUser.getLoginType().equals("GENERAL")) {
+            String rawPassword = user.getPassword();
+            String encodePassword = encode.encode(rawPassword);
+            currUser.setPassword(encodePassword);
+            currUser.setEmail(user.getEmail());
+        }
     }
 }
 

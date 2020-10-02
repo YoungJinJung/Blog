@@ -1,0 +1,16 @@
+REST API 키	 : ff5f69798cd670d861c1210025ae9df0
+kakao 로그아웃 : http://localhost:8000/auth/kakao/logout
+kakao callback : http://localhost:8000/auth/kakao/callback
+
+kakao Auth주소 : https://kauth.kakao.com/oauth/authorize?client_id=ff5f69798cd670d861c1210025ae9df0&redirect_uri=http://localhost:8000/auth/kakao/callback&response_type=code
+
+Auth 응답 코드 :http://localhost:8000/auth/kakao/callback?code=QeKb9Mkn5x48Ukh1d0UnGZZMN33k0ld4PVF-LL2f6nv1UbSDhh-1Vfdy0r7pKdoV0zwZqworDKYAAAF051oMlg
+
+토큰 발급 요청 주소(POST) :
+https://kauth.kakao.com/oauth/token
+Content-type: application/x-www-form-urlencoded;charset=utf-8
+grant_type		String	"authorization_code"로 고정			  O	
+client_id		String	앱 생성 시 발급 받은 REST API				  O	
+redirect_uri	String	인증 코드가 리다이렉트된 URI				  O	
+code			String	인증 코드 받기 요청으로 얻은 인증 코드		      O	
+client_secret	String	토큰 발급 시, 보안을 강화하기 위해 추가 확인하는 코드 X

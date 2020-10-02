@@ -3,6 +3,7 @@ package com.project.blog.controller;
 import com.project.blog.config.auth.PrincipalDetail;
 import com.project.blog.config.auth.PrincipalDetailService;
 import com.project.blog.dto.ResponseDto;
+import com.project.blog.model.LoginType;
 import com.project.blog.model.User;
 import com.project.blog.model.UserRole;
 import com.project.blog.service.UserService;
@@ -29,13 +30,13 @@ public class UserApiController {
     private UserService userService;
     @Autowired
     private PrincipalDetailService principalDetailService;
-    @Autowired
-    private AuthenticationManager authenticationManager;
+
 
     @PostMapping("/auth/joinProc")
     public ResponseDto<Integer> save(@RequestBody User user) {
         System.out.println("UserApiController: Save Called");
         user.setRole(UserRole.USER);
+        user.setLoginType(LoginType.GENERAL);
         userService.signUp(user);
         return new ResponseDto<>(HttpStatus.OK, 1);
     }
@@ -46,6 +47,8 @@ public class UserApiController {
         UserDetails currUserDetails = principalDetailService.loadUserByUsername(user.getUsername());
         Authentication authentication = new UsernamePasswordAuthenticationToken(currUserDetails, currUserDetails.getPassword(), currUserDetails.getAuthorities());
         SecurityContext securityContext = SecurityContextHolder.getContext();
+       // Authentication authentication = authenticationManager.authenticate(new UsernamePasswordAuthenticationToken(currUserDetails, currUserDetails.getPassword(), currUserDetails.getAuthorities()));
+       // SecurityContextHolder.getContext().setAuthentication(authentication);
         securityContext.setAuthentication(authentication);
         session.setAttribute("SPRING_SECURITY_CONTEXT", securityContext);
         return new ResponseDto<>(HttpStatus.OK, 1);
