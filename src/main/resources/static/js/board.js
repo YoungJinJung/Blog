@@ -9,6 +9,9 @@ let index = {
         $("#btn-update").on("click", () => {
             this.update();
         });
+        $("#btn-reply-save").on("click", () => {
+            this.replySave();
+        });
     },
     save: function () {
         let data = {
@@ -67,7 +70,41 @@ let index = {
         }).fail(function (error) {
             alert(JSON.stringify(error))
         });
+    },
+    replySave: function () {
+        let data = {
+            userId: $("#userId").val(),
+            boardId: $("#boardId").val(),
+            content: $("#reply-content").val()
+        }
+
+        $.ajax({
+            type: "POST",
+            url: `/api/board/${data.boardId}/reply`,
+            data: JSON.stringify(data),
+            contentType: "application/json; charset=utf-8",
+        }).done(function (resp) {
+            alert("Success Save Reply");
+            location.href = `/board/${data.boardId}`;
+        }).fail(function (error) {
+            alert(JSON.stringify(error))
+        });
+    },
+
+    replyDelete: function (boardId, replyId) {
+        $.ajax({
+            type: "DELETE",
+            url: `/api/board/${boardId}/reply/${replyId}`,
+            contentType: "application/json; charset=utf-8",
+        }).done(function (resp) {
+            alert("Success Remove Reply");
+            location.href = `/board/${boardId}`;
+        }).fail(function (error) {
+            alert(JSON.stringify(error))
+        });
     }
+
+
 }
 
 index.init();

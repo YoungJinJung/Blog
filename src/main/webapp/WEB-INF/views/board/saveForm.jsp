@@ -16,9 +16,9 @@
 </div>
 
 <script>
-    $('#summernote').summernote({
+    $('.summernote').summernote({
         tabsize: 2,
-        height: 100
+        height: 300
     });
 </script>
 

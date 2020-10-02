@@ -23,8 +23,12 @@ let index = {
             data: JSON.stringify(data),
             contentType: "application/json; charset=utf-8",
         }).done(function (resp) {
-            alert("Success Sign Up");
-            location.href = "/";
+            if(resp.status == 500) {
+                alert("Failed to Sign Up");
+            } else {
+                alert("Success Sign Up");
+                location.href = "/";
+            }
         }).fail(function (error) {
             alert(JSON.stringify(error))
         });
