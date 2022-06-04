@@ -33,7 +33,20 @@ let index = {
             alert(JSON.stringify(error))
         });
     },
-    udpate: function () {
+    deleteById : function (boardId) {
+        console.log(boardId);
+        $.ajax({
+            type: "DELETE",
+            url: `/api/board/${boardId}`,
+            contentType: "application/json; charset=utf-8",
+        }).done(function (resp) {
+            alert("Success Delete Post");
+            location.href = "/";
+        }).fail(function (error) {
+            alert(JSON.stringify(error))
+        });
+    },
+    update: function () {
         let id = $("#id").val();
         let data = {
             title: $("#title").val(),
@@ -43,29 +56,10 @@ let index = {
         $.ajax({
             type: "PUT",
             url: "/api/board/" + id,
-            contentType: "application/json; charset=utf-8",
-        }).done(function (resp) {
-            alert("Success Modify Post");
-            location.href = "/";
-        }).fail(function (error) {
-            alert(JSON.stringify(error))
-        });
-    },
-    save: function () {
-        let data = {
-            title: $("#title").val(),
-            content: $("#content").val(),
-        }
-
-        //ajax default : async call
-        //ajax default type json
-        $.ajax({
-            type: "POST",
-            url: "/api/board",
             data: JSON.stringify(data),
             contentType: "application/json; charset=utf-8",
         }).done(function (resp) {
-            alert("Success Save Post");
+            alert("Success Modify Post");
             location.href = "/";
         }).fail(function (error) {
             alert(JSON.stringify(error))
