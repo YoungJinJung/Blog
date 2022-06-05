@@ -21,8 +21,6 @@ public class BoardService {
     private BoardRepository boardRepository;
     @Autowired
     private ReplyRepository replyRepository;
-    @Autowired
-    private UserRepository userRepository;
 
     @Transactional
     public void writePost(Board board, User user) {
@@ -37,9 +35,7 @@ public class BoardService {
 
     @Transactional(readOnly = true)
     public Board getPost(int id) {
-        return boardRepository.findById(id).orElseThrow(() -> {
-            return new IllegalArgumentException("Failed to load post : cannot find post id");
-        });
+        return boardRepository.findById(id).orElseThrow(() -> new IllegalArgumentException("Failed to load post : cannot find post id"));
     }
 
     @Transactional
@@ -49,9 +45,7 @@ public class BoardService {
 
     @Transactional
     public void updatePost(int id, Board requestBoard) {
-        Board board = boardRepository.findById(id).orElseThrow(() -> {
-            return new IllegalArgumentException("Failed to load post : cannot find post id");
-        });//영속화
+        Board board = boardRepository.findById(id).orElseThrow(() -> new IllegalArgumentException("Failed to load post : cannot find post id"));//영속화
         board.setTitle(requestBoard.getTitle());
         board.setContent(requestBoard.getContent());
         //이떄 더티체킹 - 자동 업데이트

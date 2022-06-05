@@ -19,6 +19,8 @@
             <label for="password">Password</label>
             <input type="Password" name="password" class="form-control" placeholder="Enter password" id="password">
         </div>
+        <label for="remember-me" style>로그인 유지</label>
+        <input type="checkbox" id="remember-me" name="remember-me" /></p>
         <button id="btn-login" class="btn btn-primary">Sign In</button>
         <a href="https://kauth.kakao.com/oauth/authorize?client_id=ff5f69798cd670d861c1210025ae9df0&redirect_uri=http://localhost:8000/auth/kakao/callback&response_type=code"><img height="38" src="/image/kakao_login_medium.png"></a>
     </form>
