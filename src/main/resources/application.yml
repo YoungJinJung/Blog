@@ -15,8 +15,8 @@ spring:
   mail:
     host: smtp.naver.com
     port: 587
-    username: tlrpsh21
-    password: cnlab208316!
+    username: ???
+    password: ??
 
   datasource:
     driver-class-name: com.mysql.cj.jdbc.Driver
