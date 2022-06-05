@@ -17,10 +17,7 @@ import org.springframework.security.core.context.SecurityContext;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.PutMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import javax.servlet.http.HttpSession;
 
@@ -52,5 +49,23 @@ public class UserApiController {
         securityContext.setAuthentication(authentication);
         session.setAttribute("SPRING_SECURITY_CONTEXT", securityContext);
         return new ResponseDto<>(HttpStatus.OK, 1);
+    }
+
+    @PostMapping("/auth/checkUserName/{userName}")
+    public ResponseDto<Integer> checkUserName(@PathVariable String userName) {
+        ResponseDto<Integer> response = new ResponseDto<>(HttpStatus.OK, 0);
+        System.out.println("UserApiController: checkUserName Called");
+        User selectedUser = userService.findUser(userName);
+        if (selectedUser.getUsername() != null) {
+            response =  new ResponseDto<>(HttpStatus.OK, 1);
+        }
+        return response;
+    }
+
+    @GetMapping("/auth/checkMail/{mailAddress}")
+    public ResponseDto<Integer> checkMail(@PathVariable String mailAddress) {
+        System.out.println("UserApiController: checkMail Called");
+        int certificatedNum = userService.sendMail(mailAddress);
+        return new ResponseDto<>(HttpStatus.OK, certificatedNum);
     }
 }

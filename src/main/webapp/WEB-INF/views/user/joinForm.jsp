@@ -11,16 +11,38 @@
 <div class="container">
     <form>
         <div class="form-group">
-            <label for="username">User Name</label>
-            <input type="username" class="form-control" placeholder="Enter username" id="username">
+            <label for="username">User ID</label>
+            <input type="username" placeholder="Enter ID" id="username">
+            <span class="point checkNameComment">ID은 2자 이상 10자 이하로 설정해주시기 바랍니다.</span>
+            <input type="hidden" id="doubleCheckName"/>
         </div>
         <div class="form-group">
             <label for="password">Password</label>
-            <input type="Password" class="form-control" placeholder="Enter password" id="password">
+            <input type="Password" placeholder="Enter password" id="password">
+        </div>
+        <div class="form-group">
+            <label for="password">Validation Password</label>
+            <input type="Password" placeholder="Enter password" id="validPassword">
+            <span class="point checkPwdComment"></span>
+            <input type="hidden" id="doubleCheckPwd"/>
         </div>
         <div class="form-group">
             <label for="email">Email</label>
-            <input type="email" class="form-control" placeholder="Enter email" id="email">
+            <input id="email" class="email" type="text" name="sm_email" title="이메일 주소를 입력해주세요." required/>
+            <span id="checkEmailBtn" class="btn btn-info">인증번호 보내기</span><br/>
+            <label for="validEmail">Validation Email</label>
+            <input id="validEmail" class="number" type="text" name="sm_email2" title="인증번호 입력" disabled required/>
+            <span id="validEmailBtn" class="btn btn-info">이메일인증</span>
+            <span class="point checkEmailComment">이메일 입력후 인증번호 보내기를 해주십시오.</span>
+            <input type="hidden" id="doubleCheckEmail"/>
+        </div>
+        <div class="form-group">
+            <label for="datepicker">birthDay</label>
+            <input type="birthDay" placeholder="Enter birthDay" id="datepicker">
+        </div>
+        <div class="form-group">
+            <label for="phoneNumber">H.P</label>
+            <input type="phoneNumber" class="number" placeholder="Enter phoneNumber" id="phoneNumber">
         </div>
     </form>
     <button id="btn-save" class="btn btn-primary">Sign Up</button>

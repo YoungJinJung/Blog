@@ -6,7 +6,7 @@ import org.springframework.web.bind.annotation.*;
 public class HttpControllerTest {
     @GetMapping("/http/get")
     public String lombokTest() {
-        Member m = new Member(1, "ssar", "1234", "e-mail");
+        Member m = new Member(1, "ssar", "1234", "e-mail","","");
         System.out.println("Getter" + m.getId());
         m.setId(511);
         System.out.println("Setter" + m.getId());
