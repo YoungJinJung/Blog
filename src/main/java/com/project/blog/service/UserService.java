@@ -24,9 +24,7 @@ public class UserService {
 
     @Transactional(readOnly = true)
     public User findUser(String username) {
-        User user = userRepository.findByUsername(username).orElseGet(() -> {
-            return new User();
-        });
+        User user = userRepository.findByUsername(username).orElseGet(User::new);
         return user;
     }
 
@@ -42,9 +40,7 @@ public class UserService {
     @Transactional
     public void updateUserInfo(User user) {
         int id = user.getId();
-        User currUser = userRepository.findById(id).orElseThrow(() -> {
-            return new IllegalArgumentException(("Failed to load User Info : cannot find User id"));
-        });
+        User currUser = userRepository.findById(id).orElseThrow(() -> new IllegalArgumentException(("Failed to load User Info : cannot find User id")));
 
         //Validate
         if (currUser.getLoginType().equals("GENERAL")) {

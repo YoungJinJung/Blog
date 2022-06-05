@@ -1,6 +1,5 @@
 package com.project.blog.config;
 
-import com.project.blog.config.auth.PrincipalDetail;
 import com.project.blog.config.auth.PrincipalDetailService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
@@ -43,7 +42,16 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
                 .formLogin()
                 .loginPage("/auth/loginForm")
                 .loginProcessingUrl("/auth/loginProc")
-                .defaultSuccessUrl("/");//intercept by spring security
+                .defaultSuccessUrl("/")
+                .and()
+                .logout().deleteCookies("JSESSIONID")
+                .and()
+                .rememberMe()
+                .key("oingdaddy!")
+                .rememberMeParameter("remember-me")
+                .tokenValiditySeconds(86400 * 30)
+                .userDetailsService(principalDetailService);
+    //intercept by spring security
     }
 
     @Bean
@@ -51,4 +59,5 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
     public AuthenticationManager authenticationManagerBean() throws Exception {
         return super.authenticationManagerBean();
     }
+
 }
